@@ -1,5 +1,5 @@
 <template>
-  <MessageCard v-for="ami in lesAmis"  v-bind="ami" @update-premium="onUpdatePremium" @hide-info="onHideInfo"/>
+  <MessageCard v-for="ami in lesAmis"  v-bind="ami" @update-premium="onUpdatePremium"/>
 </template>
 
 <script setup>
