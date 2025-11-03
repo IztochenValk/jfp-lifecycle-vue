@@ -6,7 +6,7 @@
       <div class="text-base-content opacity-80">📧 {{ email }}</div>
       <div class="text-base-content opacity-80">📱 {{ phone }}</div>
       <div class="text-base-content opacity-80">
-        <div v-if="premium == true">
+        <div v-if="premium">
             un ami en or 💎ᴠɪᴘ
             <div class="badge badge-warning">premium</div>
         </div>
@@ -19,17 +19,19 @@
       <div>
         <button class="btn btn-accent" @click="updatePremium">Update Premiums</button>
         <button class="btn btn-success" @click="hideInfo">{{showInfo == true? 'Hide Info' : 'Show Info'}}</button>
+        <br>
+        <span v-show="errorAmi" class="text-red-100">Cet ami n'existe pas</span>
       </div>
-
   </div>
 </template>
 
 <script setup>
 
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 
 const showInfo = ref(true);
 
+const errorAmi = ref(false) 
 
 const props = defineProps({
   name:  { type: String, required: true },
@@ -53,10 +55,25 @@ const props = defineProps({
 const emit = defineEmits(['update-premium'])
 
 function updatePremium() {
-  emit('update-premium', { id: props.id })
+  emit('update-premium', { 
+    id: props.id, 
+    callbackAmi: (amiExists)=>{
+      if(!amiExists){
+        errorAmi.value = true
+      }
+    }
+  })
 }
 
 function hideInfo(){
   showInfo.value = !showInfo.value
 }
+/*
+const emit = defineEmits({
+  'update-premium': ({testId})=>{
+    //IDStatusMessage.value = id.value != testId? `L'utilisateur ${testId} n'existe pas` : ``;
+  }
+})*/
+
 </script>
+

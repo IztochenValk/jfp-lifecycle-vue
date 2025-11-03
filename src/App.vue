@@ -1,6 +1,6 @@
 <template>
     <div>
-        <MessageCard v-for="ami in lesAmis"  v-bind="ami" @update-premium="onUpdatePremium" v-if="isError? onError(ami.id): null" />
+        <MessageCard v-for="ami in lesAmis"  v-bind="ami" @update-premium="onUpdatePremium" :error="errorId === ami.id" />
        <div v-if="errorMessage" class="text-error mt-4">
             {{ errorMessage }}
         </div>     
@@ -58,19 +58,17 @@ const lesAmis = ref([
     }
 ]);
 
-function onUpdatePremium({ id }){
+function onUpdatePremium({ id, callbackAmi }){
     try{
         const ami = lesAmis.value.find(a => a.id === id)
         if (ami) ami.premium = !ami.premium
-        isError.value = false
-        errorMessage.value = ''
+        callbackAmi(true)
 
     }
     catch(e){
-        errorMessage.value = `Erreur : aucun ami trouvé avec l'ID "${id}".`
+        callbackAmi(false)
     }
 }
-
 
 
 </script>
