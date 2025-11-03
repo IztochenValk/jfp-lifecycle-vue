@@ -1,10 +1,18 @@
 <template>
-  <MessageCard v-for="ami in lesAmis"  v-bind="ami" @update-premium="onUpdatePremium"/>
+    <div>
+        <MessageCard v-for="ami in lesAmis"  v-bind="ami" @update-premium="onUpdatePremium" v-if="isError? onError(ami.id): null" />
+       <div v-if="errorMessage" class="text-error mt-4">
+            {{ errorMessage }}
+        </div>     
+    </div>
 </template>
 
 <script setup>
 import MessageCard from './components/MessageCard.vue';
 import { ref } from 'vue'
+
+const errorMessage = ref('')
+
 const lesAmis = ref([
     {
         id: 'lasticot',
@@ -51,7 +59,18 @@ const lesAmis = ref([
 ]);
 
 function onUpdatePremium({ id }){
- const ami = lesAmis.value.find(a => a.id === id)
-  if (ami) ami.premium = !ami.premium   
+    try{
+        const ami = lesAmis.value.find(a => a.id === id)
+        if (ami) ami.premium = !ami.premium
+        isError.value = false
+        errorMessage.value = ''
+
+    }
+    catch(e){
+        errorMessage.value = `Erreur : aucun ami trouvé avec l'ID "${id}".`
+    }
 }
+
+
+
 </script>
