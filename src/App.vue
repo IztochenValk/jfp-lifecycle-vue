@@ -1,5 +1,5 @@
 <template>
-  <MessageCard v-for="ami in lesAmis"  v-bind="ami"/>
+  <MessageCard v-for="ami in lesAmis"  v-bind="ami" @update-premium="onUpdatePremium" @hide-info="onHideInfo"/>
 </template>
 
 <script setup>
@@ -37,7 +37,7 @@ const lesAmis = ref([
     {
         id: 'yoyoyo',
         name: "JAROD",
-        phone: '+338765477',
+        phone: '+3387675477',
         email: 'jAROD@seagal.com',
         premium: true
     },
@@ -49,4 +49,9 @@ const lesAmis = ref([
         premium: false
     }
 ]);
+
+function onUpdatePremium({ id }){
+ const ami = lesAmis.value.find(a => a.id === id)
+  if (ami) ami.premium = !ami.premium   
+}
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="card w-full max-w-lg shadow-xl">
-    <div class="card-body">
+    <div class="card-body info" v-show="showInfo">
       <h5 class="card-title text-base-content">👤 {{ name }}</h5>
       <div class="text-base-content opacity-80">🆔 {{ id }}</div>
       <div class="text-base-content opacity-80">📧 {{ email }}</div>
@@ -14,14 +14,24 @@
             Un ami en Plomb 😞
             <div class="badge">standard</div>
         </div>
-
       </div>
     </div>
+      <div>
+        <button class="btn btn-accent" @click="updatePremium">Update Premiums</button>
+        <button class="btn btn-success" @click="hideInfo">{{showInfo == true? 'Hide Info' : 'Show Info'}}</button>
+      </div>
+
   </div>
 </template>
 
 <script setup>
-defineProps({
+
+import { ref, computed } from 'vue'
+
+const showInfo = ref(true);
+
+
+const props = defineProps({
   name:  { type: String, required: true },
   id:    { type: String, required: true },
 
@@ -39,4 +49,14 @@ defineProps({
 
   premium: { type: Boolean, default: false }
 })
+
+const emit = defineEmits(['update-premium'])
+
+function updatePremium() {
+  emit('update-premium', { id: props.id })
+}
+
+function hideInfo(){
+  showInfo.value = !showInfo.value
+}
 </script>
