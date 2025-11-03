@@ -1,6 +1,6 @@
 <template>
     <div>
-        <MessageCard v-for="ami in lesAmis"  v-bind="ami" @update-premium="onUpdatePremium" :error="errorId === ami.id" />
+        <MessageCard v-for="ami in lesAmis"  v-bind="ami" @update-premium="onUpdatePremium" :error="errorId === ami.id" @delete-friend="onDeleteFriend"/>
        <div v-if="errorMessage" class="text-error mt-4">
             {{ errorMessage }}
         </div>     
@@ -70,5 +70,8 @@ function onUpdatePremium({ id, callbackAmi }){
     }
 }
 
+function onDeleteFriend({ id }){
+    lesAmis.value = lesAmis.value.filter((ami)=> ami.id != id)
+}
 
 </script>

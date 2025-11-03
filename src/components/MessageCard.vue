@@ -21,6 +21,8 @@
         <button class="btn btn-success" @click="hideInfo">{{showInfo == true? 'Hide Info' : 'Show Info'}}</button>
         <br>
         <span v-show="errorAmi" class="text-red-100">Cet ami n'existe pas</span>
+        <br>
+        <button class="btn btn-warning" @click="deleteFriend">Delete Friend</button>
       </div>
   </div>
 </template>
@@ -52,7 +54,7 @@ const props = defineProps({
   premium: { type: Boolean, default: false }
 })
 
-const emit = defineEmits(['update-premium'])
+const emit = defineEmits(['update-premium', 'delete-friend'])
 
 function updatePremium() {
   emit('update-premium', { 
@@ -63,6 +65,12 @@ function updatePremium() {
       }
     }
   })
+}
+
+function deleteFriend(){
+  emit('delete-friend', { 
+    id: props.id
+  }) 
 }
 
 function hideInfo(){
