@@ -1,0 +1,29 @@
+<template>
+    <div class="card w-full max-w-sm bg-indigo-600 text-white shadow-xl mb-10">
+        <figure>
+          <img
+            src="https://lumiere-a.akamaihd.net/v1/images/image_3e7881c8.jpeg"
+            alt="Yoda" />
+        </figure>
+
+      <div class="card-body text-center">
+        
+        <h2 class="card-title text-lg justify-center">
+          Afficher les données utilisateurs tu dois
+        </h2>
+        <div class="mt-4">
+          <p class="text-xl font-semibold">{{ name }}</p>
+          <p class="opacity-90">{{ age }} ans</p>
+        </div>
+      </div>
+    </div>
+</template>
+
+<script setup>
+
+const props = defineProps({
+  name: String,
+  age: Number
+})
+
+</script>
