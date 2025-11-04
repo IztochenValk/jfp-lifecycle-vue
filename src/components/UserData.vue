@@ -36,7 +36,18 @@
 <script setup>
     import { ref } from 'vue';
     
-    const emit = defineEmits(['update-user'])
+    const emit = defineEmits({'update-user': (userData)=>{
+      if (!userData){
+        return false
+      } 
+        if(typeof userData.name == 'string'
+          && userData.name.length > 0
+          && userData.name.length < 30
+          && Number(userData.age) > 0
+        ){
+            return userData
+        }
+    }})
 
     const { error } = defineProps({ 
         error: Boolean 
@@ -50,13 +61,7 @@
     })
 
     function updateUser() {
-        emit('update-user', (() => {
-            let nameLength = user.value.name.length 
-            if (nameLength > 0 && nameLength <30 && user.value.age > 0){
-                return { name: user.value.name, age: user.value.age }
-            }
-            return null
-        })()
-    )}
+      emit('update-user', { name: user.value.name, age: user.value.age })
+    }
 
 </script>
