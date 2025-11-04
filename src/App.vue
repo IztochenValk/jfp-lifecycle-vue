@@ -5,10 +5,14 @@
             {{ errorMessage }}
         </div>     
     </div>
+    <div>
+        <NewFriend @add-friend="parentAddFriend" />
+    </div>
 </template>
 
 <script setup>
 import MessageCard from './components/MessageCard.vue';
+import NewFriend from './components/NewFriend.vue'
 import { ref } from 'vue'
 
 const errorMessage = ref('')
@@ -74,4 +78,7 @@ function onDeleteFriend({ id }){
     lesAmis.value = lesAmis.value.filter((ami)=> ami.id != id)
 }
 
+function parentAddFriend(nouvelAmi){
+    lesAmis.value = [...lesAmis.value, nouvelAmi]
+}
 </script>
