@@ -2,7 +2,7 @@
   <div class="card w-full max-w-3xl bg-base-100 shadow-xl border border-gray-200 mx-auto">
     <div class="card-body">
       <h2 class="card-title mb-4 text-lg font-semibold text-gray-800">
-        Statistiques des Pokémons 🎴
+        Statistiques des Pokémons
       </h2>
 
       <div class="h-200 relative">
