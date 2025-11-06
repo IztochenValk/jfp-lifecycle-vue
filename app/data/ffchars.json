@@ -1,0 +1,29 @@
+[
+  {
+    "id": 101,
+    "name": "Cloud Strife",
+    "server": "Phoenix",
+    "dc": "Light",
+    "job": "WAR",
+    "avatar": "/avatars/cloud.png",
+    "lodestoneUrl": "https://eu.finalfantasyxiv.com/lodestone/character/101/"
+  },
+  {
+    "id": 202,
+    "name": "Tifa Lockhart",
+    "server": "Shiva",
+    "dc": "Light",
+    "job": "MNK",
+    "avatar": "/avatars/tifa.png",
+    "lodestoneUrl": "https://eu.finalfantasyxiv.com/lodestone/character/202/"
+  },
+  {
+    "id": 303,
+    "name": "Squall Leonhart",
+    "server": "Ragnarok",
+    "dc": "Chaos",
+    "job": "GNB",
+    "avatar": "/avatars/squall.png",
+    "lodestoneUrl": "https://eu.finalfantasyxiv.com/lodestone/character/303/"
+  }
+]
