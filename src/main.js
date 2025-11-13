@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
 import './style.css'
-import App from './App.vue'
+import Main from './tp-component-communication.vue'
 import { router } from './router.js'
-createApp(App).use(router).mount('#app')
+createApp(Main).use(router).mount('#app')
